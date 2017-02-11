@@ -183,6 +183,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f6e64adce60a4b548436c170ea9b1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 1879900923}
+  enemies:
+  - {fileID: 1103238538544750, guid: a8a088ab1ad004290b2ac527616d454b, type: 2}
+  - {fileID: 1359143651980024, guid: db2cabe5db6b14e9dbb228b86ea4472c, type: 2}
+  - {fileID: 1959125837480064, guid: 0ac64a26bf66e47b4855b00d3c01c069, type: 2}
+  maxOnScreenEnemies: 8
+  totalEnemies: 8
+  enemiesPerSpawn: 1
 --- !u!4 &9311515
 Transform:
   m_ObjectHideFlags: 0
@@ -24442,6 +24450,11 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &1879900923 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1219500032379762, guid: d9e3f244006af4ea5b0520d27194efb5,
+    type: 2}
+  m_PrefabInternal: {fileID: 595291180}
 --- !u!1 &1884968901
 GameObject:
   m_ObjectHideFlags: 0
