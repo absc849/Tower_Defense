@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f6e64adce60a4b548436c170ea9b1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 0}
+  spawnPoint: {fileID: 1219500032379762, guid: d9e3f244006af4ea5b0520d27194efb5, type: 2}
   enemies:
   - {fileID: 1103238538544750, guid: a8a088ab1ad004290b2ac527616d454b, type: 2}
   - {fileID: 1359143651980024, guid: db2cabe5db6b14e9dbb228b86ea4472c, type: 2}

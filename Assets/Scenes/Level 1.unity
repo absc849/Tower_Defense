@@ -156,54 +156,6 @@ Transform:
   m_Father: {fileID: 1697130408}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &9311513
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 9311515}
-  - component: {fileID: 9311514}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &9311514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 9311513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f6e64adce60a4b548436c170ea9b1ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 1879900923}
-  enemies:
-  - {fileID: 1103238538544750, guid: a8a088ab1ad004290b2ac527616d454b, type: 2}
-  - {fileID: 1359143651980024, guid: db2cabe5db6b14e9dbb228b86ea4472c, type: 2}
-  - {fileID: 1959125837480064, guid: 0ac64a26bf66e47b4855b00d3c01c069, type: 2}
-  maxOnScreenEnemies: 8
-  totalEnemies: 8
-  enemiesPerSpawn: 1
---- !u!4 &9311515
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 9311513}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.069954, y: -0.999217, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &21848002
 GameObject:
   m_ObjectHideFlags: 0
@@ -7950,6 +7902,7 @@ GameObject:
   - component: {fileID: 538004304}
   - component: {fileID: 538004303}
   - component: {fileID: 538004302}
+  - component: {fileID: 538004307}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -8025,6 +7978,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &538004307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 538004301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5562d8127287940a786fee42adec561f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 1102387396756114, guid: a7b50c74bb5bb4c48a5c25d34098037e,
+    type: 2}
 --- !u!1 &543491953
 GameObject:
   m_ObjectHideFlags: 0
@@ -8935,7 +8901,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4401533794281994, guid: d9e3f244006af4ea5b0520d27194efb5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -9.35
+      value: -9.01
       objectReference: {fileID: 0}
     - target: {fileID: 4401533794281994, guid: d9e3f244006af4ea5b0520d27194efb5, type: 2}
       propertyPath: m_LocalPosition.y
@@ -24450,11 +24416,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!1 &1879900923 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1219500032379762, guid: d9e3f244006af4ea5b0520d27194efb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 595291180}
 --- !u!1 &1884968901
 GameObject:
   m_ObjectHideFlags: 0

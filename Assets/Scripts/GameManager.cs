@@ -45,6 +45,12 @@ private int enemiesOnScreen = 0;
 				}
 			}
 		}
+	}
+
+	public void RemoveEnemyFromScreen(){
+		if (enemiesOnScreen > 0){
+			enemiesOnScreen -= 1;
+		}
 	}	
 }
 
