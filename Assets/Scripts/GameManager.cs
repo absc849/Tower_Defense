@@ -11,6 +11,7 @@ public GameObject[] enemies;
 public int maxOnScreenEnemies;
 public int totalEnemies;
 public int enemiesPerSpawn;
+const float spawnDelay = 0.5f;
 
 private int enemiesOnScreen = 0;
 	
@@ -31,26 +32,34 @@ private int enemiesOnScreen = 0;
 	}
 // Use this for initialization
 	void Start () {
-		SpawnEnemy();
+		StartCoroutine(Spawn());
 	}
+	/// <summary>
+	/// Update is called every frame, if the MonoBehaviour is enabled.
+	/// </summary>
 
-	void SpawnEnemy(){
-		if(enemiesPerSpawn > 0 && enemiesOnScreen < totalEnemies){
-			for(int i = 0; i < enemiesPerSpawn; i++){
-				if(enemiesOnScreen < maxOnScreenEnemies){
-					GameObject newEnemy = Instantiate(enemies[0]) as GameObject;
-					// instatiate creates an object, using as game object turns the object back into a game object
-					newEnemy.transform.position = spawnPoint.transform.position;
-					maxOnScreenEnemies += 1;
-				}
-			}
-		}
-	}
+
 
 	public void RemoveEnemyFromScreen(){
 		if (enemiesOnScreen > 0){
 			enemiesOnScreen -= 1;
 		}
+	}
+
+	IEnumerator Spawn(){
+		if(enemiesPerSpawn > 0 && enemiesOnScreen < totalEnemies){
+			for(int i = 0; i < enemiesPerSpawn; i++){
+				if(enemiesOnScreen < maxOnScreenEnemies){
+					GameObject newEnemy = Instantiate(enemies[1]) as GameObject;
+					// instatiate creates an object, using as game object turns the object back into a game object
+					newEnemy.transform.position = spawnPoint.transform.position;
+					enemiesOnScreen += 1;
+				}
+			}
+			yield return new WaitForSeconds(spawnDelay);
+			StartCoroutine(Spawn());
+		}
+
 	}	
 }
 
