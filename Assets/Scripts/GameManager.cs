@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : Singleton<GameManager> {
 
 
-public static GameManager instance = null;
 public GameObject spawnPoint;
 public GameObject[] enemies;
 public int maxOnScreenEnemies;
@@ -19,17 +18,7 @@ private int enemiesOnScreen = 0;
 /// <summary>
 /// Awake is called when the script instance is being loaded.
 /// </summary>
-	void Awake()
-	{
-		if(instance == null){
-			instance = this;
-		}
-		else if(instance != this){
-			Destroy(gameObject);
-		}
-		DontDestroyOnLoad(gameObject);
-		
-	}
+	
 // Use this for initialization
 	void Start () {
 		StartCoroutine(Spawn());

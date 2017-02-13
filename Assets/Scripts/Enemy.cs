@@ -50,7 +50,7 @@ private float navigationTime = 0;
 			target += 1;
 		}
 		else if (other.tag == "Finish"){
-			GameManager.instance.RemoveEnemyFromScreen();
+			GameManager.Instance.RemoveEnemyFromScreen();
 			Destroy(gameObject);
 
 		}
