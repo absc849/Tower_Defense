@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
-public int target = 0;
-public Transform exitPoint;
+private int target = 0;
+[SerializeField]
+private Transform exitPoint;
 
-public Transform[] wayPoints;
+[SerializeField]
+private Transform[] wayPoints;
 
 //the smaller the number the less it will be called in update
-public float navigationUpdate;
+[SerializeField]
+private float navigationUpdate;
 
 
 private Transform enemy;
