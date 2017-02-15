@@ -6,6 +6,9 @@ TagManager:
   tags:
   - CheckPoint
   - Enemy
+  - BuildSite
+  - Ground
+  - Tower
   layers:
   - Default
   - TransparentFX
