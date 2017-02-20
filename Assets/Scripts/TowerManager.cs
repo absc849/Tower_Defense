@@ -50,6 +50,7 @@ public class TowerManager : Singleton<TowerManager> {
 
 	public void FollowMouse(){
 		transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		//transform.position = new Vector2(transform.position.x, transform.position.y);
 	}
 
 	public void EnableDragSprite(Sprite sprite){
