@@ -17,7 +17,9 @@ private int totalEnemies;
 private int enemiesPerSpawn;
 const float spawnDelay = 0.5f;
 
-private int enemiesOnScreen = 0;
+
+
+public List<Enemy> EnemyList = new List<Enemy>();
 	
 
 /// <summary>
@@ -34,20 +36,33 @@ private int enemiesOnScreen = 0;
 
 
 
-	public void RemoveEnemyFromScreen(){
-		if (enemiesOnScreen > 0){
-			enemiesOnScreen -= 1;
+	
+
+	public void RegisterEnemy(Enemy enemy){
+		EnemyList.Add(enemy);
+
+	}
+
+	public void UnregisterEnemy(Enemy enemy){
+		EnemyList.Remove(enemy);
+		Destroy(enemy.gameObject);
+	}
+
+	public void DestroyAllEnemies()
+	{
+		foreach(Enemy enemy in EnemyList){
+			Destroy(enemy.gameObject);
 		}
+		EnemyList.Clear();
 	}
 
 	IEnumerator Spawn(){
-		if(enemiesPerSpawn > 0 && enemiesOnScreen < totalEnemies){
+		if(enemiesPerSpawn > 0 && EnemyList.Count < totalEnemies){
 			for(int i = 0; i < enemiesPerSpawn; i++){
-				if(enemiesOnScreen < maxOnScreenEnemies){
+				if(EnemyList.Count < maxOnScreenEnemies){
 					GameObject newEnemy = Instantiate(enemies[1]) as GameObject;
 					// instatiate creates an object, using as game object turns the object back into a game object
 					newEnemy.transform.position = spawnPoint.transform.position;
-					enemiesOnScreen += 1;
 				}
 			}
 			yield return new WaitForSeconds(spawnDelay);

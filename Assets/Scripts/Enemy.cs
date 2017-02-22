@@ -23,6 +23,7 @@ private float navigationTime = 0;
 	// Use this for initialization
 	void Start () {
 		enemy = GetComponent<Transform>();
+		GameManager.Instance.RegisterEnemy(this);
 		
 	}
 	
@@ -53,8 +54,7 @@ private float navigationTime = 0;
 			target += 1;
 		}
 		else if (other.tag == "Finish"){
-			GameManager.Instance.RemoveEnemyFromScreen();
-			Destroy(gameObject);
+			GameManager.Instance.UnregisterEnemy(this);
 
 		}
 	}

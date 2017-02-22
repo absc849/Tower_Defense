@@ -52,7 +52,9 @@
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Singleton.cs" />
-     <Compile Include="Assets\Scripts\TowerBtn.cs" />
+     <Compile Include="Assets\Scripts\Tower\Projectile.cs" />
+     <Compile Include="Assets\Scripts\Tower\Tower.cs" />
+     <Compile Include="Assets\Scripts\Tower\TowerBtn.cs" />
      <Compile Include="Assets\Scripts\TowerManager.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
