@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4194607050431388}
   - component: {fileID: 212685555136168378}
+  - component: {fileID: 114172880529376740}
   m_Layer: 8
   m_Name: 'Fireball Tower '
   m_TagString: Tower
@@ -40,6 +41,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114172880529376740
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1778396621587850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ede77fdb647cf49f1a95d3447647372e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBetweenAttacks: 2
+  attackRadius: 4
+  projectile: {fileID: 114326015474086290, guid: 13ce97673d69247d1bc7e20bfba110f6,
+    type: 2}
 --- !u!212 &212685555136168378
 SpriteRenderer:
   m_ObjectHideFlags: 1
