@@ -32,11 +32,14 @@ public bool IsDead{
 	}
 }
 
+private Animator anim;
+
 
 	// Use this for initialization
 	void Start () {
 		enemy = GetComponent<Transform>();
 		enemyCollider = GetComponent<Collider2D>();
+		anim = GetComponent<Animator>();
 		GameManager.Instance.RegisterEnemy(this);
 		
 	}
@@ -82,9 +85,11 @@ public bool IsDead{
 	public void EnemyHit(int HitPoints){
 		if(healthPoints - HitPoints > 0){
 		healthPoints -= HitPoints;
-		// enemy hurt animation
+		anim.Play("Hurt");
 		} else {
-			// enemy die animation
+			anim.SetTrigger("enemyDies");
+			//set trigger because the death animation is supposed to interrupt 
+			//any current state, look at the animator to understand it.
 			Die();
 		}
 	}
