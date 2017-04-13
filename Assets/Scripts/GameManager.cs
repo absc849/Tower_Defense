@@ -1,7 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
+public enum GameStatus{
+	next, play, gameover, win
+}
 public class GameManager : Singleton<GameManager> {
 
 [SerializeField]
@@ -17,6 +21,43 @@ private int totalEnemies;
 private int enemiesPerSpawn;
 const float spawnDelay = 0.5f;
 
+[SerializeField]
+private int totalWaves = 10;
+[SerializeField]
+private Text totalEscapedLbl;
+
+[SerializeField]
+private Text totalMoneyLbl;
+
+[SerializeField]
+private Text currentWaveLbl;
+
+[SerializeField]
+private Text playButtonLbl;
+
+[SerializeField]
+private Button playButton;
+
+private int waveNumber = 0;
+private int totalMoney = 10;
+private int totalEscaped = 0;
+private int roundEscaped = 0;
+private int totalKilled = 0;
+private int whichEnemiesToSpawn = 0;
+
+private GameStatus currentState = GameStatus.play;
+
+public int TotalMoney {
+	get{
+		return totalMoney;
+	}
+	set{
+		totalMoney = value;
+		totalMoneyLbl.text = totalMoney.ToString();
+	}
+}
+
+
 
 
 public List<Enemy> EnemyList = new List<Enemy>();
@@ -28,7 +69,9 @@ public List<Enemy> EnemyList = new List<Enemy>();
 	
 // Use this for initialization
 	void Start () {
-		StartCoroutine(Spawn());
+		playButton.gameObject.SetActive(false);
+		//ShowMenu();
+		//StartCoroutine(Spawn());
 	}
 	/// <summary>
 	/// Update is called every frame, if the MonoBehaviour is enabled.
@@ -56,6 +99,38 @@ public List<Enemy> EnemyList = new List<Enemy>();
 		EnemyList.Clear();
 	}
 
+	public void AddMoney(int amount){
+		TotalMoney += amount;
+
+	}
+
+	public void SubtractMoney(int amount){
+		TotalMoney -= amount;
+
+	}
+
+	public void ShowMenu(){
+		switch(currentState){
+			case GameStatus.gameover:
+			playButtonLbl.text = "Play Again!";
+			/* create another button / banner have it say Game Over */
+
+			//Add GameOver Sound
+			break;
+			case GameStatus.next:
+			playButtonLbl.text = "Next Wave";
+			
+			break;
+			case GameStatus.play:
+			playButtonLbl.text = "Play";
+			break;
+			case GameStatus.win:
+			playButtonLbl.text = "Play";
+			/* create another button / banner have it say you win */
+			break;
+		}
+	}
+
 	IEnumerator Spawn(){
 		if(enemiesPerSpawn > 0 && EnemyList.Count < totalEnemies){
 			for(int i = 0; i < enemiesPerSpawn; i++){
@@ -68,6 +143,7 @@ public List<Enemy> EnemyList = new List<Enemy>();
 			yield return new WaitForSeconds(spawnDelay);
 			StartCoroutine(Spawn());
 		}
+
 
 	}	
 }
