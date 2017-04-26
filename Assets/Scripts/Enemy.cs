@@ -11,6 +11,9 @@ private Transform exitPoint;
 [SerializeField]
 private Transform[] wayPoints;
 
+[SerializeField]
+private int rewardAmount;
+
 //the smaller the number the less it will be called in update
 [SerializeField]
 private float navigationUpdate;
@@ -72,7 +75,10 @@ private Animator anim;
 			target += 1;
 		}
 		else if (other.tag == "Finish"){
+			GameManager.Instance.RoundEscaped += 1;
+			GameManager.Instance.TotalEscaped += 1;
 			GameManager.Instance.UnregisterEnemy(this);
+			GameManager.Instance.IsWaveOver();
 
 		}
 		else if(other.tag == "Projectile"){
@@ -96,6 +102,10 @@ private Animator anim;
 
 	public void Die(){
 		isDead = true;
+		GameManager.Instance.TotalKilled += 1;
 		enemyCollider.enabled = false;
+		GameManager.Instance.AddMoney(rewardAmount);
+		GameManager.Instance.IsWaveOver();
+		
 	}
 }

@@ -47,6 +47,36 @@ private int whichEnemiesToSpawn = 0;
 
 private GameStatus currentState = GameStatus.play;
 
+
+//who escaped in the whole game
+public int TotalEscaped{
+	get {
+		return totalEscaped;
+	}
+	set {
+		totalEscaped = value;
+	}
+}
+// who escaped in this round
+public int RoundEscaped{
+	get {
+		return roundEscaped;
+	}
+	set{
+		roundEscaped = value;
+	}
+}
+
+public int TotalKilled{
+	get {
+		return totalKilled;
+	}
+	set{
+		totalKilled = value;
+	}
+}
+
+
 public int TotalMoney {
 	get{
 		return totalMoney;
@@ -70,13 +100,18 @@ public List<Enemy> EnemyList = new List<Enemy>();
 // Use this for initialization
 	void Start () {
 		playButton.gameObject.SetActive(false);
-		//ShowMenu();
-		//StartCoroutine(Spawn());
+		ShowMenu();
+		StartCoroutine(Spawn());
+	
 	}
-	/// <summary>
+	
+	 /// <summary>
 	/// Update is called every frame, if the MonoBehaviour is enabled.
 	/// </summary>
-
+	void Update()
+	{
+		HandleEscape();
+	}
 
 
 	
@@ -109,6 +144,28 @@ public List<Enemy> EnemyList = new List<Enemy>();
 
 	}
 
+	public void IsWaveOver(){
+		totalEscapedLbl.text = "Escaped" + TotalEscaped + "/10";
+		if(RoundEscaped + TotalKilled == totalEnemies){
+
+			SetCurrentGameState();
+			ShowMenu();
+		}
+	}
+
+	public void SetCurrentGameState(){
+		if(TotalEscaped >= 10){
+			currentState = GameStatus.gameover;
+		}else if (waveNumber == 0 && (TotalKilled + RoundEscaped) == 0){
+			currentState = GameStatus.play;
+		}else if (waveNumber >= totalWaves){
+			currentState = GameStatus.win;
+		}else {
+			currentState = GameStatus.next;
+		}
+		
+	}
+
 	public void ShowMenu(){
 		switch(currentState){
 			case GameStatus.gameover:
@@ -128,6 +185,19 @@ public List<Enemy> EnemyList = new List<Enemy>();
 			playButtonLbl.text = "Play";
 			/* create another button / banner have it say you win */
 			break;
+		}
+		playButton.gameObject.SetActive(true);
+	}
+
+	public void PlayButtonPressed(){
+		
+
+	}
+
+	private void HandleEscape(){
+		if(Input.GetKeyDown(KeyCode.Escape)){
+			TowerManager.Instance.DisableDragSprite();
+			TowerManager.Instance.towerBtnPressed = null;
 		}
 	}
 
