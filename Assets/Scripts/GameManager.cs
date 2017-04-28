@@ -16,7 +16,7 @@ private GameObject[] enemies;
 [SerializeField]
 private int maxOnScreenEnemies;
 [SerializeField]
-private int totalEnemies;
+private int totalEnemies = 3;
 [SerializeField]
 private int enemiesPerSpawn;
 const float spawnDelay = 0.5f;
@@ -101,7 +101,6 @@ public List<Enemy> EnemyList = new List<Enemy>();
 	void Start () {
 		playButton.gameObject.SetActive(false);
 		ShowMenu();
-		StartCoroutine(Spawn());
 	
 	}
 	
@@ -182,7 +181,7 @@ public List<Enemy> EnemyList = new List<Enemy>();
 			playButtonLbl.text = "Play";
 			break;
 			case GameStatus.win:
-			playButtonLbl.text = "Play";
+			playButtonLbl.text = "You Win";
 			/* create another button / banner have it say you win */
 			break;
 		}
@@ -190,7 +189,26 @@ public List<Enemy> EnemyList = new List<Enemy>();
 	}
 
 	public void PlayButtonPressed(){
-		
+		switch(currentState){
+			case GameStatus.next:
+				waveNumber += 1;
+				totalEnemies += waveNumber;
+			break;
+		default:
+			totalEnemies = 3;
+			totalEscaped = 0;
+			totalMoney = 10;
+			totalMoneyLbl.text = TotalMoney.ToString();
+			totalEscapedLbl.text = "Escaped " + TotalEscaped + "/10";
+		break;
+		}
+		DestroyAllEnemies();
+		TotalKilled = 0;
+		RoundEscaped = 0;
+		currentWaveLbl.text = "Wave " + (waveNumber + 1);
+		StartCoroutine(Spawn());
+		playButton.gameObject.SetActive(false);
+
 
 	}
 
@@ -205,7 +223,7 @@ public List<Enemy> EnemyList = new List<Enemy>();
 		if(enemiesPerSpawn > 0 && EnemyList.Count < totalEnemies){
 			for(int i = 0; i < enemiesPerSpawn; i++){
 				if(EnemyList.Count < maxOnScreenEnemies){
-					GameObject newEnemy = Instantiate(enemies[1]) as GameObject;
+					GameObject newEnemy = Instantiate(enemies[0]) as GameObject;
 					// instatiate creates an object, using as game object turns the object back into a game object
 					newEnemy.transform.position = spawnPoint.transform.position;
 				}

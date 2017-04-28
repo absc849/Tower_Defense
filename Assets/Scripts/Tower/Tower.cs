@@ -69,7 +69,6 @@ private bool isAttacking = false;
 	}
 
 	IEnumerator ShootProjectile(Projectile projectile){
-		print("yoyoy");
 		while(GetTargetDistance(targetEnemy) > 0.20f && projectile != null && targetEnemy != null){
 			var dir = targetEnemy.transform.localPosition - transform.localPosition;
 			var angleDirection = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
