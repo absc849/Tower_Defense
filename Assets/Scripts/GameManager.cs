@@ -12,7 +12,7 @@ public class GameManager : Singleton<GameManager> {
 private GameObject spawnPoint;
 
 [SerializeField]
-private GameObject[] enemies;
+private Enemy[] enemies;
 
 [SerializeField]
 private int totalEnemies = 3;
@@ -144,8 +144,10 @@ public List<Enemy> EnemyList = new List<Enemy>();
 
 	public void IsWaveOver(){
 		totalEscapedLbl.text = "Escaped " + TotalEscaped + "/10";
-		if(RoundEscaped + TotalKilled == totalEnemies){
-
+		if((RoundEscaped + TotalKilled) == totalEnemies){
+			if(waveNumber <= enemies.Length){
+			whichEnemiesToSpawn = waveNumber;
+		}
 			SetCurrentGameState();
 			ShowMenu();
 		}
@@ -224,7 +226,10 @@ public List<Enemy> EnemyList = new List<Enemy>();
 		if(enemiesPerSpawn > 0 && EnemyList.Count < totalEnemies){
 			for(int i = 0; i < enemiesPerSpawn; i++){
 				if(EnemyList.Count < totalEnemies){
-					GameObject newEnemy = Instantiate(enemies[0]) as GameObject;
+					// newEnemy = Instantiate(enemies[0]) as GameObject;
+					 Enemy newEnemy = Instantiate(enemies[Random.Range(0,whichEnemiesToSpawn)]) as Enemy;
+					// Enemy newEnemy = Instantiate(enemies[ Random.Range( 0, enemiesToSpawn)]) as Enemy;
+
 					// instatiate creates an object, using as game object turns the object back into a game object
 					newEnemy.transform.position = spawnPoint.transform.position;
 				}
