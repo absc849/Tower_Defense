@@ -4,7 +4,7 @@ using UnityEngine;
 public class TowerBtn : MonoBehaviour {
 
 [SerializeField]
-private GameObject towerObject;
+private Tower towerObject;
 [SerializeField]
 private Sprite dragSprite;
 
@@ -16,7 +16,7 @@ public int TowerPrice{
 		return towerPrice;
 	}
 }
-public GameObject TowerObject{
+public Tower TowerObject{
 		get{
 			return towerObject;
 			}

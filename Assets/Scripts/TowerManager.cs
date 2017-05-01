@@ -8,13 +8,40 @@ public class TowerManager : Singleton<TowerManager> {
 	public TowerBtn towerBtnPressed{get; set;}
 	private SpriteRenderer spriteRenderer;
 
+	private List <Tower> TowerList = new List<Tower>();
+	private List <Collider2D> BuildList = new List<Collider2D>();
 
+	private Collider2D buildTile;
 
 	// Use this for initialization
 	void Start () {
 		spriteRenderer = GetComponent<SpriteRenderer>();
+		buildTile = GetComponent<Collider2D>();
+
 	}
 	
+	public void RegisterBuildSite(Collider2D buildTag){
+		BuildList.Add(buildTag);
+	}
+
+	public void RegisterTower(Tower tower){
+		TowerList.Add(tower);
+	}
+
+	public void RenameTagsBuildSites(){
+		foreach(Collider2D buildTag in BuildList){
+			buildTag.tag = "BuildSite";
+		}
+		BuildList.Clear();
+	}
+
+	public void DestroyAllTowers(){
+		foreach(Tower tower in TowerList){
+			Destroy(tower.gameObject);
+		}
+		TowerList.Clear();
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetMouseButtonDown(0)){
@@ -23,6 +50,9 @@ public class TowerManager : Singleton<TowerManager> {
 			// raycasts, pretty much shoot a line into the scene until it hits something 
 			RaycastHit2D hit = Physics2D.Raycast(worldPoint,Vector2.zero);
 			if(hit.collider.tag == "BuildSite" && towerBtnPressed != null){
+				buildTile = hit.collider;
+				hit.collider.tag = "BuildSiteFull";
+				RegisterBuildSite(buildTile);
 				PlaceTower(hit);
 			}
 		}
@@ -35,14 +65,16 @@ public class TowerManager : Singleton<TowerManager> {
 	public void PlaceTower(RaycastHit2D hit){
 		//if pointer over game object is false and the tower button has been pressed this will work
 		if(!EventSystem.current.IsPointerOverGameObject() && towerBtnPressed != null){
-			hit.collider.tag = "BuildSiteFull";
-			GameObject newTower = Instantiate(towerBtnPressed.TowerObject);
+		//	hit.collider.tag = "BuildSiteFull";
+			Tower newTower = Instantiate(towerBtnPressed.TowerObject) as Tower;
 			newTower.transform.position = hit.transform.position;
+			BuyTower(towerBtnPressed.TowerPrice);
+			RegisterTower(newTower);
 			DisableDragSprite();
 		}
 	}
 
-	public void buyTower(int price){
+	public void BuyTower(int price){
 		GameManager.Instance.SubtractMoney(price);
 
 	}
