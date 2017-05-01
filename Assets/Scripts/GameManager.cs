@@ -197,6 +197,8 @@ public List<Enemy> EnemyList = new List<Enemy>();
 			totalEnemies = 3;
 			totalEscaped = 0;
 			totalMoney = 10;
+			TowerManager.Instance.DestroyAllTowers();
+			TowerManager.Instance.RenameTagsBuildSites();
 			totalMoneyLbl.text = TotalMoney.ToString();
 			totalEscapedLbl.text = "Escaped " + TotalEscaped + " /10";
 		break;

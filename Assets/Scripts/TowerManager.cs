@@ -66,7 +66,7 @@ public class TowerManager : Singleton<TowerManager> {
 		//if pointer over game object is false and the tower button has been pressed this will work
 		if(!EventSystem.current.IsPointerOverGameObject() && towerBtnPressed != null){
 		//	hit.collider.tag = "BuildSiteFull";
-			Tower newTower = Instantiate(towerBtnPressed.TowerObject) as Tower;
+			Tower newTower = Instantiate(towerBtnPressed.TowerObject);
 			newTower.transform.position = hit.transform.position;
 			BuyTower(towerBtnPressed.TowerPrice);
 			RegisterTower(newTower);
