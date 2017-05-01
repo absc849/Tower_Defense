@@ -42,10 +42,17 @@ public class TowerManager : Singleton<TowerManager> {
 		}
 	}
 
+	public void buyTower(int price){
+		GameManager.Instance.SubtractMoney(price);
+
+	}
+
 
 	public void SelectedTower(TowerBtn towerSelected){
+		if(towerSelected.TowerPrice <= GameManager.Instance.TotalMoney){
 		towerBtnPressed = towerSelected;
 		EnableDragSprite(towerBtnPressed.DragSprite);
+		}
 	}
 
 	public void FollowMouse(){

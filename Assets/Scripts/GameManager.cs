@@ -13,8 +13,7 @@ private GameObject spawnPoint;
 
 [SerializeField]
 private GameObject[] enemies;
-[SerializeField]
-private int maxOnScreenEnemies;
+
 [SerializeField]
 private int totalEnemies = 3;
 [SerializeField]
@@ -144,7 +143,7 @@ public List<Enemy> EnemyList = new List<Enemy>();
 	}
 
 	public void IsWaveOver(){
-		totalEscapedLbl.text = "Escaped" + TotalEscaped + "/10";
+		totalEscapedLbl.text = "Escaped " + TotalEscaped + "/10";
 		if(RoundEscaped + TotalKilled == totalEnemies){
 
 			SetCurrentGameState();
@@ -199,7 +198,7 @@ public List<Enemy> EnemyList = new List<Enemy>();
 			totalEscaped = 0;
 			totalMoney = 10;
 			totalMoneyLbl.text = TotalMoney.ToString();
-			totalEscapedLbl.text = "Escaped " + TotalEscaped + "/10";
+			totalEscapedLbl.text = "Escaped " + TotalEscaped + " /10";
 		break;
 		}
 		DestroyAllEnemies();
@@ -222,7 +221,7 @@ public List<Enemy> EnemyList = new List<Enemy>();
 	IEnumerator Spawn(){
 		if(enemiesPerSpawn > 0 && EnemyList.Count < totalEnemies){
 			for(int i = 0; i < enemiesPerSpawn; i++){
-				if(EnemyList.Count < maxOnScreenEnemies){
+				if(EnemyList.Count < totalEnemies){
 					GameObject newEnemy = Instantiate(enemies[0]) as GameObject;
 					// instatiate creates an object, using as game object turns the object back into a game object
 					newEnemy.transform.position = spawnPoint.transform.position;

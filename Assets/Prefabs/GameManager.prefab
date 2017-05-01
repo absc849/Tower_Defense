@@ -57,7 +57,7 @@ MonoBehaviour:
   - {fileID: 1103238538544750, guid: a8a088ab1ad004290b2ac527616d454b, type: 2}
   - {fileID: 1959125837480064, guid: 0ac64a26bf66e47b4855b00d3c01c069, type: 2}
   maxOnScreenEnemies: 8
-  totalEnemies: 8
+  totalEnemies: 3
   enemiesPerSpawn: 1
   totalWaves: 10
   totalEscapedLbl: {fileID: 0}
