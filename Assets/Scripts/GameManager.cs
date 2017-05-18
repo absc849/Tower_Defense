@@ -46,6 +46,8 @@ private int whichEnemiesToSpawn = 0;
 
 private GameStatus currentState = GameStatus.play;
 
+private AudioSource audioSource;
+
 
 //who escaped in the whole game
 public int TotalEscaped{
@@ -86,6 +88,12 @@ public int TotalMoney {
 	}
 }
 
+public AudioSource AudioSource{
+	get{
+		return audioSource;
+	}
+}
+
 
 
 
@@ -99,6 +107,7 @@ public List<Enemy> EnemyList = new List<Enemy>();
 // Use this for initialization
 	void Start () {
 		playButton.gameObject.SetActive(false);
+		audioSource = GetComponent<AudioSource>();
 		ShowMenu();
 	
 	}
@@ -172,8 +181,7 @@ public List<Enemy> EnemyList = new List<Enemy>();
 			playButtonLbl.text = "Play Again!";
 			/* create another button / banner have it say Game Over */
 
-			//Add GameOver Sound
-			break;
+			GameManager.Instance.AudioSource.PlayOneShot(SoundManager.Instance.GameOver);			break;
 			case GameStatus.next:
 			playButtonLbl.text = "Next Wave";
 			
@@ -199,7 +207,7 @@ public List<Enemy> EnemyList = new List<Enemy>();
 				totalEnemies = 3;
 				totalEscaped = 0;
 				totalMoney = 10;
-				waveNumber = -1;
+				waveNumber = 0;
 				whichEnemiesToSpawn = 0;
 				TowerManager.Instance.DestroyAllTowers();
 				TowerManager.Instance.RenameTagsBuildSites();
@@ -214,6 +222,8 @@ public List<Enemy> EnemyList = new List<Enemy>();
 			TowerManager.Instance.RenameTagsBuildSites();
 			totalMoneyLbl.text = TotalMoney.ToString();
 			totalEscapedLbl.text = "Escaped " + TotalEscaped + " /10";
+			audioSource.PlayOneShot(SoundManager.Instance.NewGame);
+			//play one shot ensures to complete the sound before playing another
 		break;
 		}
 		DestroyAllEnemies();

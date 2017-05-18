@@ -91,6 +91,7 @@ private Animator anim;
 	public void EnemyHit(int HitPoints){
 		if(healthPoints - HitPoints > 0){
 		healthPoints -= HitPoints;
+		GameManager.Instance.AudioSource.PlayOneShot(SoundManager.Instance.Hit);
 		anim.Play("Hurt");
 		} else {
 			anim.SetTrigger("enemyDies");
@@ -102,6 +103,7 @@ private Animator anim;
 
 	public void Die(){
 		isDead = true;
+		GameManager.Instance.AudioSource.PlayOneShot(SoundManager.Instance.Death);
 		GameManager.Instance.TotalKilled += 1;
 		enemyCollider.enabled = false;
 		GameManager.Instance.AddMoney(rewardAmount);

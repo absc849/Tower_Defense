@@ -63,8 +63,21 @@ private bool isAttacking = false;
 		isAttacking = false;
 		if(targetEnemy != null){
 		Projectile newProjectile =  (Instantiate(projectile) as Projectile);
+		// if(targetEnemy == null){
+		// 	Destroy(projectile);
+		// }else{
 		newProjectile.transform.localPosition = transform.localPosition;
+		if(newProjectile.ProjectileType == proType.arrow){
+			GameManager.Instance.AudioSource.PlayOneShot(SoundManager.Instance.Arrow);
+		} 
+		else if(newProjectile.ProjectileType == proType.fireball){
+			GameManager.Instance.AudioSource.PlayOneShot(SoundManager.Instance.Fireball);
+		}
+		else if(newProjectile.ProjectileType == proType.rock){
+			GameManager.Instance.AudioSource.PlayOneShot(SoundManager.Instance.Rock);
+		}
 		StartCoroutine(ShootProjectile(newProjectile));
+		//}
 		}
 	}
 
@@ -78,7 +91,7 @@ private bool isAttacking = false;
 		}
 		if(projectile != null || targetEnemy == null){
 			Destroy(projectile);
-		}
+		} 
 	}
 
 	private float GetTargetDistance(Enemy thisEnemy){

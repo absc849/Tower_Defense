@@ -117,6 +117,7 @@ MonoBehaviour:
   - {fileID: 4167165075795288, guid: 63c80ecfd839d4a28a1082a9e41053c8, type: 2}
   - {fileID: 4345051099521588, guid: 63c80ecfd839d4a28a1082a9e41053c8, type: 2}
   - {fileID: 4816001170404682, guid: 63c80ecfd839d4a28a1082a9e41053c8, type: 2}
+  rewardAmount: 3
   navigationUpdate: 0.01
   healthPoints: 300
 --- !u!212 &212011669224486034

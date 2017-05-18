@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114137554487026748}
   m_Layer: 0
   m_Name: Enemy1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,8 +117,9 @@ MonoBehaviour:
   - {fileID: 4167165075795288, guid: 63c80ecfd839d4a28a1082a9e41053c8, type: 2}
   - {fileID: 4345051099521588, guid: 63c80ecfd839d4a28a1082a9e41053c8, type: 2}
   - {fileID: 4816001170404682, guid: 63c80ecfd839d4a28a1082a9e41053c8, type: 2}
+  rewardAmount: 2
   navigationUpdate: 0.01
-  healthPoints: 100
+  healthPoints: 200
 --- !u!212 &212680022674782622
 SpriteRenderer:
   m_ObjectHideFlags: 1
