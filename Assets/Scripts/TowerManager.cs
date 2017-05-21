@@ -13,6 +13,8 @@ public class TowerManager : Singleton<TowerManager> {
 
 	private Collider2D buildTile;
 
+	//private GameObject otherObject;
+
 	// Use this for initialization
 	void Start () {
 		spriteRenderer = GetComponent<SpriteRenderer>();
@@ -24,8 +26,15 @@ public class TowerManager : Singleton<TowerManager> {
 		BuildList.Add(buildTag);
 	}
 
+	public void DeregisterBuildSite(Collider2D buildTag){
+		BuildList.Remove(buildTag);
+	}
+
 	public void RegisterTower(Tower tower){
 		TowerList.Add(tower);
+	}
+	public void DeregisterTower(Tower tower){
+		TowerList.Remove(tower);
 	}
 
 	public void RenameTagsBuildSites(){
@@ -35,12 +44,15 @@ public class TowerManager : Singleton<TowerManager> {
 		BuildList.Clear();
 	}
 
+
+
 	public void DestroyAllTowers(){
 		foreach(Tower tower in TowerList){
 			Destroy(tower.gameObject);
 		}
 		TowerList.Clear();
 	}
+
 
 	// Update is called once per frame
 	void Update () {
@@ -54,7 +66,14 @@ public class TowerManager : Singleton<TowerManager> {
 				hit.collider.tag = "BuildSiteFull";
 				RegisterBuildSite(buildTile);
 				PlaceTower(hit);
-			}
+			 }
+			//else if(hit.collider.tag == "BuildSiteFull"  && towerBtnPressed != null && GameManager.Instance.TotalMoney >= 20){
+			 	
+			// 	Destroy(buildTile.gameObject);
+			// 	hit.collider.tag = "BuildSite";
+			// 	DeregisterBuildSite(buildTile);
+			// 	DeregisterTower(towerBtnPressed.TowerObject);
+			//}
 		}
 
 		if(spriteRenderer.enabled){
@@ -69,7 +88,8 @@ public class TowerManager : Singleton<TowerManager> {
 			Tower newTower = Instantiate(towerBtnPressed.TowerObject);
 			newTower.transform.position = hit.transform.position;
 			BuyTower(towerBtnPressed.TowerPrice);
-			GameManager.Instance.AudioSource.PlayOneShot(SoundManager.Instance.TowerBuilt);			RegisterTower(newTower);
+			GameManager.Instance.AudioSource.PlayOneShot(SoundManager.Instance.TowerBuilt);			
+			RegisterTower(newTower);
 			DisableDragSprite();
 		}
 	}
@@ -78,6 +98,7 @@ public class TowerManager : Singleton<TowerManager> {
 		GameManager.Instance.SubtractMoney(price);
 
 	}
+
 
 
 	public void SelectedTower(TowerBtn towerSelected){

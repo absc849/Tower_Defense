@@ -35,6 +35,15 @@ public bool IsDead{
 	}
 }
 
+public int GetHealth{
+	get{
+		return healthPoints;
+	}
+	set{
+		healthPoints = value;
+	}
+}
+
 private Animator anim;
 
 
@@ -103,9 +112,9 @@ private Animator anim;
 
 	public void Die(){
 		isDead = true;
+		enemyCollider.enabled = false;
 		GameManager.Instance.AudioSource.PlayOneShot(SoundManager.Instance.Death);
 		GameManager.Instance.TotalKilled += 1;
-		enemyCollider.enabled = false;
 		GameManager.Instance.AddMoney(rewardAmount);
 		GameManager.Instance.IsWaveOver();
 		

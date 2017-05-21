@@ -14,6 +14,8 @@ private GameObject spawnPoint;
 [SerializeField]
 private Enemy[] enemies;
 
+private Enemy enemy;
+
 [SerializeField]
 private int totalEnemies = 3;
 [SerializeField]
@@ -181,7 +183,8 @@ public List<Enemy> EnemyList = new List<Enemy>();
 			playButtonLbl.text = "Play Again!";
 			/* create another button / banner have it say Game Over */
 
-			GameManager.Instance.AudioSource.PlayOneShot(SoundManager.Instance.GameOver);			break;
+			GameManager.Instance.AudioSource.PlayOneShot(SoundManager.Instance.GameOver);			
+			break;
 			case GameStatus.next:
 			playButtonLbl.text = "Next Wave";
 			
@@ -191,7 +194,6 @@ public List<Enemy> EnemyList = new List<Enemy>();
 			break;
 			case GameStatus.win:
 			playButtonLbl.text = "You Win";
-			/* create another button / banner have it say you win */
 			break;
 		}
 		playButton.gameObject.SetActive(true);
@@ -214,6 +216,19 @@ public List<Enemy> EnemyList = new List<Enemy>();
 				totalMoneyLbl.text = TotalMoney.ToString();
 				totalEscapedLbl.text = "Escaped " + TotalEscaped + " /10";
 			break;
+			case GameStatus.win:
+				totalEnemies = 5;
+				totalEscaped = 0;
+				totalMoney = 20;
+				waveNumber = 0;
+				whichEnemiesToSpawn = 0;
+				TowerManager.Instance.DestroyAllTowers();
+				TowerManager.Instance.RenameTagsBuildSites();
+				totalMoneyLbl.text = TotalMoney.ToString();
+				
+				totalEscapedLbl.text = "Escaped " + TotalEscaped + " /10";
+			break;
+
 		default:
 			totalEnemies = 3;
 			totalEscaped = 0;
